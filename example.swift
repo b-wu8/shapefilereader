@@ -1,3 +1,5 @@
+// example icon on SwiftUI
+// adjust position and size to your needs
 var body: some View {
                     VStack {
                         HStack {
@@ -73,27 +75,24 @@ private func handleDocumentPickerResult(_ result: Result<[URL], Error>) {
                     let attribute = attributes[index]
                     switch geometry {
                     case .point(let coord):
-                        print(coord.latitude, coord.longitude)
-                        print("ERROR: WE HAVE A POINT HERE")
+                      // Processing Logic
                     case .polyLine(let coords):
-                        // Single linestring
+                        // Example Logic
                         let cpolyline = CustomPolyline(coordinates: coords)
                         cpolyline.titleText = attribute["Name"]
-                        self.appViewModel.polylines.append(cpolyline)
-                    case .multiLine(let lineStrings):
-                        // Multiple linestrings
+
+                      case .multiLine(let lineStrings):
+                        // Multiple linestrings example logic
                         for coords in lineStrings {
                             let cpolyline = CustomPolyline(coordinates: coords)
                             cpolyline.titleText = attribute["Name"]
-                            self.appViewModel.polylines.append(cpolyline)
                         }
                     case .polygon(let coords):
-                        print("ERROR: WE HAVE A POLYGON HERE")
+                        // Processing Logic
                     }
                 }
 
                 // Optionally, adjust the map region to fit the new shapefile
-                adjustMapRegion(with: geometries)
             }
 
         case .failure(let error):
